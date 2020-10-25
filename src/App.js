@@ -29,7 +29,7 @@ class App extends Component{
   }
 
   _callApi = () => {
-    return fetch('https://yts.mx/api/v2/list_movies.json?sort_by=rating')
+    return fetch('https://yts.mx/api/v2/list_movies.json?sort_by=download_count')
     .then(potato => potato.json())
     .then(json => json.data.movies)
     .catch(err => console.log(err))
@@ -37,7 +37,7 @@ class App extends Component{
 
   render(){
     return (
-      <div className="App">
+      <div className={this.state.movies ? "App" : "App-0loading"}>
         {this.state.movies ? this._renderMovies() : 'Loading'}
       </div>
     );
